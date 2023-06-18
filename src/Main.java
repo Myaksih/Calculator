@@ -1,0 +1,102 @@
+public class Main {
+    public static String calc(String input) throws RomanianNumberExeption {
+        String[] splittedDigits = input.split(" ");           //Ввод строки
+
+
+        int countMathOperations = 0;
+
+        for (int i = 0; i < splittedDigits.length; i++) {           // проверка чтобы было всего 2 слагаемых
+            if(splittedDigits[i].equals("+") || splittedDigits[i].equals("-") || splittedDigits[i].equals("/") || splittedDigits[i].equals("*")){
+                countMathOperations++;
+            }
+            if(countMathOperations>1){
+                throw new RomanianNumberExeption();
+            }
+        }
+        try {
+            Integer.parseInt(splittedDigits[2]);
+            Integer.parseInt(splittedDigits[0]);
+            return arabicDigit(splittedDigits);            // отделение методов арабских от римских
+        }
+        catch (Exception e){
+
+            return romanianNumbers(splittedDigits);
+        }
+    }
+
+    public static String arabicDigit(String[] arrayNumbers){
+        int first = Integer.parseInt(arrayNumbers[0]);
+        int second = Integer.parseInt(arrayNumbers[2]);
+
+        switch (arrayNumbers[1]){
+            case "+":
+                return String.valueOf(first+second);
+
+            case "-":
+                return String.valueOf(first-second);
+
+            case "*":
+                return String.valueOf(first*second);
+
+            case  "/":
+                return String.valueOf(first/second);
+
+        }
+        return "";
+    }
+
+    public static String romanianNumbers(String[] arrayNumbers) throws RomanianNumberExeption {
+
+        String[] digits = new String[]{"1","2","3","4","5","6","7","8","9","10"};
+        String[] romanianNumbers= new String[] { "I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",
+        "XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX" };
+
+        int first = 0;
+        int second = 0;
+        int answer = 0;
+
+        for (int i = 0; i < 10; i++) {                      // проверка что оба слагаемые римские
+            boolean isRomanian = true;
+           if(arrayNumbers[0].equals(digits[i]) || arrayNumbers[2].equals(digits[i])){
+               throw new RomanianNumberExeption();
+           }
+        }
+
+        for (int i = 0; i < 10; i++) {
+            if(arrayNumbers[0].equals(romanianNumbers[i])){
+                first = i+1;
+            }
+            if(arrayNumbers[2].equals(romanianNumbers[i])){
+                second = i+1;
+            }
+        }
+
+        switch (arrayNumbers[1]){
+            case "+":
+                answer = first+second;
+                break;
+            case "-":
+                answer = first-second;
+                break;
+            case "*":
+                answer = first*second;
+                break;
+            case  "/":
+                answer = first/second;
+                break;
+        }
+        if (answer-1<0){                                    // проверка чтобы ответ был больше 0
+            throw new RomanianNumberExeption();
+        }
+        else{
+            return romanianNumbers[answer-1];
+        }
+    }
+}
+
+class RomanianNumberExeption extends Exception{
+    public RomanianNumberExeption(){
+        System.out.println("Проверьте правильность ввода данных");
+    }
+}
+

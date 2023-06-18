@@ -1,0 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+
+/*
+Парсер реквестов
+*/
+
+public class Solution {
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        String url = reader.readLine();
+        ArrayList<String> list = new ArrayList<>();
+
+        String QuestionIndex = "?";
+        String AnoterSignIndex = "=";
+        String HuetaIndex = "&";
+        System.out.print(url.substring(url.indexOf(QuestionIndex) + 1, url.indexOf(AnoterSignIndex))+" ");
+        url = url.substring(url.indexOf(HuetaIndex));
+
+        while(url.contains(HuetaIndex)){
+            String substringAndRavno = url.substring(url.indexOf(HuetaIndex)+1, url.indexOf(AnoterSignIndex));
+
+            System.out.print(substringAndRavno + " ");
+            if(substringAndRavno.equals("obj")){
+                Object objStringAnswer = url.substring(url.indexOf(AnoterSignIndex+1),url.indexOf(HuetaIndex));
+            }
+
+            url = url.substring(url.indexOf(AnoterSignIndex)+1,url.indexOf(HuetaIndex+1));
+
+            list.add(substringAndRavno);
+
+        }
+
+    }
+
+
+
+
+    public static void alert(double value) {
+        System.out.println("double: " + value);
+    }
+
+    public static void alert(String value) {
+        System.out.println("String: " + value);
+    }
+}
