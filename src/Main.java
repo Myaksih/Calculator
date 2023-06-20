@@ -1,4 +1,7 @@
 public class Main {
+    public static void main(String[] args) throws RomanianNumberExeption {
+        System.out.println(calc("1 + 2"));
+    }
     public static String calc(String input) throws RomanianNumberExeption {
         String[] splittedDigits = input.split(" ");           //Ввод строки
 
@@ -94,7 +97,7 @@ public class Main {
     }
 }
 
-class RomanianNumberExeption extends Exception{
+class   RomanianNumberExeption extends Exception{
     public RomanianNumberExeption(){
         System.out.println("Проверьте правильность ввода данных");
     }
