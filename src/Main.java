@@ -1,6 +1,12 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
 public class Main {
-    public static void main(String[] args) throws RomanianNumberExeption {
-        System.out.println(calc("1 + 2"));
+    public static void main(String[] args) throws RomanianNumberExeption, IOException {
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        String example = bufferedReader.readLine();
+        System.out.println(calc(example));
     }
     public static String calc(String input) throws RomanianNumberExeption {
         String[] splittedDigits = input.split(" ");           //Ввод строки
