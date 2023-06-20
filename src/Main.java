@@ -12,6 +12,7 @@ public class Main {
         String[] splittedDigits = input.split(" ");           //Ввод строки
 
 
+
         int countMathOperations = 0;
 
         for (int i = 0; i < splittedDigits.length; i++) {           // проверка чтобы было всего 2 слагаемых
@@ -33,9 +34,15 @@ public class Main {
         }
     }
 
-    public static String arabicDigit(String[] arrayNumbers){
+    public static String arabicDigit(String[] arrayNumbers) throws RomanianNumberExeption {
         int first = Integer.parseInt(arrayNumbers[0]);
         int second = Integer.parseInt(arrayNumbers[2]);
+        if(first>10 || first<1){
+            throw new RomanianNumberExeption();
+        }
+        if(second>10 || second<1){
+            throw new RomanianNumberExeption();
+        }
 
         switch (arrayNumbers[1]){
             case "+":
@@ -58,7 +65,12 @@ public class Main {
 
         String[] digits = new String[]{"1","2","3","4","5","6","7","8","9","10"};
         String[] romanianNumbers= new String[] { "I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII",
-        "XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX" };
+        "XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII",
+        "XXIX","XXX","XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL","XLI","XLII",
+        "XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","XLIX","L","LI","LII","LIII","LIV","LV","LVI","LVII","LVIII",
+        "LIX","LX","LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX","LXXI","LXXII","LXXIII",
+        "LXXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX","LXXXI","LXXXII","LXXXIII","LXXXIV","LXXXV",
+        "LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC","XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","XCIX","C"};
 
         int first = 0;
         int second = 0;
